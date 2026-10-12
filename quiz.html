@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ET CBT Exam Arena</title>
+  <link rel="stylesheet" href="stys.css">
+  <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0d47a1">
+    <link rel="icon" href="/icons/icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div id="loadingDiv" style="
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    font-family: Arial, sans-serif;
+    ">
+    <div style="
+      width: 50px;
+      height: 50px;
+      border: 5px solid #fff;
+      border-top: 5px solid #004aad;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 15px;
+      "></div>
+    <p style="font-size: 16px; margin: 0;">
+      Loading <span class='f'>.</span><span class='s'>.</span>
+      <span class='t'>.</span>
+
+    </p>
+
+
+  </div>
+
+
+  <div id="str">
+
+    <div>
+      <label for="n" class="n">Enter your first name</label>
+      <input type="text" placeholder="Musa" name="n" id="fin1">
+      <label for="n" class="n">Enter your Last name</label>
+      <input type="text" placeholder="Ajayi" name="n" id="fin2">
+      <button id="star">Start</button>
+    </div>
+  </div>
+  <div id="main">
+    <input type="hidden" id="ts">
+    <div id="cb"></div>
+    <div class="netstat" id="netstat">
+      <p>
+        ⚠️ Network disconnected. Please reconnect as soon as possible
+      </p>
+    </div>
+
+
+    <div class="forbtn">
+
+      <div>
+        <span id="un">Ajayi-Musa</span>
+      </div>
+
+
+      <div class="ct">
+        <button id='cv'> Calculator</button>
+
+
+        <p>
+          <span id="tim" style="display:none;"></span><span id="htim"></span>:<span id="mtim"></span>:<span id="stim"></span>
+        </p>
+      </div>
+    </div>
+    <div class="qmain">
+
+      <div class="hmain">
+        <p id="ti">
+          1
+        </p>
+        <progress id='hj'></progress>
+        <div class='ti'>
+
+
+        </div>
+
+
+        <!--question -->
+        <div id="pas"  style="max-height: 200px; overflow-y: auto; padding: 12px; border: 1px solid #ddd; border-radius: 8px; background: #fff; line-height: 1.6; color:black;" ></div>
+        <div class="im" >
+          <img src="" alt="" id="im">
+
+        </div>
+
+
+
+        <h1 id="header"></h1>
+        <!--options div-->
+        <div class="p">
+
+          <button id="opt1" class='opts' onclick="sco(0)"></button>
+          <button id="opt2" class='opts' onclick="sco(1)"></button>
+          <button id="opt3" class='opts' onclick="sco(2)"></button>
+          <button id="opt4" class='opts'onclick="sco(3)"></button>
+                    <button id="opt5" class='opts'onclick="sco(4)"></button>
+        </div>
+        <div class="btnstack">
+          <button id="obtn">Open sidebar</button>
+          <button id="nx">Next</button>
+
+          <button id="prev">Previous</button>
+
+          <button id="sumb">Submit</button>
+
+        </div>
+        <div id="sl"></div>
+        <!--calculator div-->
+        <div class="calc" id="c">
+          <div class="calc-header">
+            <span class="calc-label">📅 </span>
+            <button class="calc-close" onclick="sw()" title="Close">x</button>
+          </div>
+          <input type="text" placeholder="0" id="dis" maxlength="16" inputmode="decimal" autocomplete="off" autocorrect="off" spellcheck="false">
+          <div class="calcs">
+            <button id='btn4' style="background: blue;">Calc</button>
+            <button id="btn5" style="background: blue;">C</button>
+            <button id="btn6" style="background: blue;">&#9003;</button>
+            <button id="btn3" style="background: green;">=</button>
+    
+            <button onclick="Add(7)">7</button>
+            <button onclick="Add(8)">8</button>
+            <button onclick="Add(9)">9</button>
+            <button onclick="Add('/')" style="background: green;">/</button>
+            <button onclick="Add(4)">4</button>
+            <button onclick="Add(5)">5</button>
+            <button onclick="Add(6)">6</button>
+            <button onclick="Add('*')" style="background: green;">*</button>
+            <button onclick="Add(1)">1</button>
+            <button onclick="Add(2)">2</button>
+            <button onclick="Add(3)">3</button>
+            <button onclick="Add('-')" style="background: green;">-</button>
+            <button onclick="Add(0)">0</button>
+            <button onclick="Add('.')" style="background-color: blue;">. </button>
+<button onclick="addsqrt()">√</button>            <button onclick="Add('+')" style="background: green;">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!--sidebar div-->
+
+      <div class="sub" id="sub">
+
+        <div class="sidebar-numbers">
+          <button id="cbtn" title="close sidebar">x</button>
+
+          <div class="qr">
+
+            <p></p>
+            <p>
+              ENGLISH
+            </p>
+            <p></p>
+
+            <button class="btn" onclick="rdirt(1)">1</button>
+            <button class="btn" onclick="rdirt(2)">2</button>
+            <button class="btn" onclick="rdirt(3)">3</button>
+            <button class="btn" onclick="rdirt(4)">4</button>
+            <button class="btn" onclick="rdirt(5)">5</button>
+            <button class="btn" onclick="rdirt(6)">6</button>
+            <button class="btn" onclick="rdirt(7)">7</button>
+            <button class="btn" onclick="rdirt(8)">8</button>
+            <button class="btn" onclick="rdirt(9)">9</button>
+            <button class="btn" onclick="rdirt(10)">10</button>
+            <button class="btn" onclick="rdirt(11)">11</button>
+            <button class="btn" onclick="rdirt(12)">12</button>
+            <button class="btn" onclick="rdirt(13)">13</button>
+            <button class="btn" onclick="rdirt(14)">14</button>
+            <button class="btn" onclick="rdirt(15)">15</button>
+            <button class="btn" onclick="rdirt(16)">16</button>
+            <button class="btn" onclick="rdirt(17)">17</button>
+            <button class="btn" onclick="rdirt(18)">18</button>
+            <button class="btn" onclick="rdirt(19)">19</button>
+            <button class="btn" onclick="rdirt(20)">20</button>
+            <button class="btn" onclick="rdirt(21)">21</button>
+            <button class="btn" onclick="rdirt(22)">22</button>
+            <button class="btn" onclick="rdirt(23)">23</button>
+            <button class="btn" onclick="rdirt(24)">24</button>
+            <button class="btn" onclick="rdirt(25)">25</button>
+            <button class="btn" onclick="rdirt(26)">26</button>
+            <button class="btn" onclick="rdirt(27)">27</button>
+            <button class="btn" onclick="rdirt(28)">28</button>
+            <button class="btn" onclick="rdirt(29)">29</button>
+            <button class="btn" onclick="rdirt(30)">30</button>
+            <button class="btn" onclick="rdirt(31)">31</button>
+            <button class="btn" onclick="rdirt(32)">32</button>
+            <button class="btn" onclick="rdirt(33)">33</button>
+            <button class="btn" onclick="rdirt(34)">34</button>
+            <button class="btn" onclick="rdirt(35)">35</button>
+            <button class="btn" onclick="rdirt(36)">36</button>
+            <button class="btn" onclick="rdirt(37)">37</button>
+            <button class="btn" onclick="rdirt(38)">38</button>
+            <button class="btn" onclick="rdirt(39)">39</button>
+            <button class="btn" onclick="rdirt(40)">40</button>
+            <button class="btn" onclick="rdirt(41)">41</button>
+            <button class="btn" onclick="rdirt(42)">42</button>
+            <button class="btn" onclick="rdirt(43)">43</button>
+            <button class="btn" onclick="rdirt(44)">44</button>
+            <button class="btn" onclick="rdirt(45)">45</button>
+            <button class="btn" onclick="rdirt(46)">46</button>
+            <button class="btn" onclick="rdirt(47)">47</button>
+            <button class="btn" onclick="rdirt(48)">48</button>
+            <button class="btn" onclick="rdirt(49)">49</button>
+            <button class="btn" onclick="rdirt(50)">50</button>
+            <button class="btn" onclick="rdirt(51)">51</button>
+            <button class="btn" onclick="rdirt(52)">52</button>
+            <button class="btn" onclick="rdirt(53)">53</button>
+            <button class="btn" onclick="rdirt(54)">54</button>
+            <button class="btn" onclick="rdirt(55)">55</button>
+            <button class="btn" onclick="rdirt(56)">56</button>
+            <button class="btn" onclick="rdirt(57)">57</button>
+            <button class="btn" onclick="rdirt(58)">58</button>
+            <button class="btn" onclick="rdirt(59)">59</button>
+            <button class="btn" onclick="rdirt(60)">60</button>
+            <p></p>
+            <p id="su2"></p>
+            <p></p>
+            <button class="btn" onclick="rdirt(61)">1</button>
+            <button class="btn" onclick="rdirt(62)">2</button>
+            <button class="btn" onclick="rdirt(63)">3</button>
+            <button class="btn" onclick="rdirt(64)">4</button>
+            <button class="btn" onclick="rdirt(65)">5</button>
+            <button class="btn" onclick="rdirt(66)">6</button>
+            <button class="btn" onclick="rdirt(67)">7</button>
+            <button class="btn" onclick="rdirt(68)">8</button>
+            <button class="btn" onclick="rdirt(69)">9</button>
+            <button class="btn" onclick="rdirt(70)">10</button>
+            <button class="btn" onclick="rdirt(71)">11</button>
+            <button class="btn" onclick="rdirt(72)">12</button>
+            <button class="btn" onclick="rdirt(73)">13</button>
+            <button class="btn" onclick="rdirt(74)">14</button>
+            <button class="btn" onclick="rdirt(75)">15</button>
+            <button class="btn" onclick="rdirt(76)">16</button>
+            <button class="btn" onclick="rdirt(77)">17</button>
+            <button class="btn" onclick="rdirt(78)">18</button>
+            <button class="btn" onclick="rdirt(79)">19</button>
+            <button class="btn" onclick="rdirt(80)">20</button>
+            <button class="btn" onclick="rdirt(81)">21</button>
+            <button class="btn" onclick="rdirt(82)">22</button>
+            <button class="btn" onclick="rdirt(83)">23</button>
+            <button class="btn" onclick="rdirt(84)">24</button>
+            <button class="btn" onclick="rdirt(85)">25</button>
+            <button class="btn" onclick="rdirt(86)">26</button>
+            <button class="btn" onclick="rdirt(87)">27</button>
+            <button class="btn" onclick="rdirt(88)">28</button>
+            <button class="btn" onclick="rdirt(89)">29</button>
+            <button class="btn" onclick="rdirt(90)">30</button>
+            <button class="btn" onclick="rdirt(91)">31</button>
+            <button class="btn" onclick="rdirt(92)">32</button>
+            <button class="btn" onclick="rdirt(93)">33</button>
+            <button class="btn" onclick="rdirt(94)">34</button>
+            <button class="btn" onclick="rdirt(95)">35</button>
+            <button class="btn" onclick="rdirt(96)">36</button>
+            <button class="btn" onclick="rdirt(97)">37</button>
+            <button class="btn" onclick="rdirt(98)">38</button>
+            <button class="btn" onclick="rdirt(99)">39</button>
+            <button class="btn" onclick="rdirt(100)">40</button>
+            <p></p>
+            <p></p>
+
+            <p></p>
+            <p id="su3"></p>
+
+            <p></p>
+
+            <button class="btn" onclick="rdirt(101)">1</button>
+            <button class="btn" onclick="rdirt(102)">2</button>
+            <button class="btn" onclick="rdirt(103)">3</button>
+            <button class="btn" onclick="rdirt(104)">4</button>
+            <button class="btn" onclick="rdirt(105)">5</button>
+            <button class="btn" onclick="rdirt(106)">6</button>
+            <button class="btn" onclick="rdirt(107)">7</button>
+            <button class="btn" onclick="rdirt(108)">8</button>
+            <button class="btn" onclick="rdirt(109)">9</button>
+            <button class="btn" onclick="rdirt(110)">10</button>
+            <button class="btn" onclick="rdirt(111)">11</button>
+            <button class="btn" onclick="rdirt(112)">12</button>
+            <button class="btn" onclick="rdirt(113)">13</button>
+            <button class="btn" onclick="rdirt(114)">14</button>
+            <button class="btn" onclick="rdirt(115)">15</button>
+            <button class="btn" onclick="rdirt(116)">16</button>
+            <button class="btn" onclick="rdirt(117)">17</button>
+            <button class="btn" onclick="rdirt(118)">18</button>
+            <button class="btn" onclick="rdirt(119)">19</button>
+            <button class="btn" onclick="rdirt(120)">20</button>
+            <button class="btn" onclick="rdirt(121)">21</button>
+            <button class="btn" onclick="rdirt(122)">22</button>
+            <button class="btn" onclick="rdirt(123)">23</button>
+            <button class="btn" onclick="rdirt(124)">24</button>
+            <button class="btn" onclick="rdirt(125)">25</button>
+            <button class="btn" onclick="rdirt(126)">26</button>
+            <button class="btn" onclick="rdirt(127)">27</button>
+            <button class="btn" onclick="rdirt(128)">28</button>
+            <button class="btn" onclick="rdirt(129)">29</button>
+            <button class="btn" onclick="rdirt(130)">30</button>
+            <button class="btn" onclick="rdirt(131)">31</button>
+            <button class="btn" onclick="rdirt(132)">32</button>
+            <button class="btn" onclick="rdirt(133)">33</button>
+            <button class="btn" onclick="rdirt(134)">34</button>
+            <button class="btn" onclick="rdirt(135)">35</button>
+            <button class="btn" onclick="rdirt(136)">36</button>
+            <button class="btn" onclick="rdirt(137)">37</button>
+            <button class="btn" onclick="rdirt(138)">38</button>
+            <button class="btn" onclick="rdirt(139)">39</button>
+            <button class="btn" onclick="rdirt(140)">40</button>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p id="su4"></p>
+
+            <p></p>
+            <button class="btn" onclick="rdirt(141)">1</button>
+            <button class="btn" onclick="rdirt(142)">2</button>
+            <button class="btn" onclick="rdirt(143)">3</button>
+            <button class="btn" onclick="rdirt(144)">4</button>
+            <button class="btn" onclick="rdirt(145)">5</button>
+            <button class="btn" onclick="rdirt(146)">6</button>
+            <button class="btn" onclick="rdirt(147)">7</button>
+            <button class="btn" onclick="rdirt(148)">8</button>
+            <button class="btn" onclick="rdirt(149)">9</button>
+            <button class="btn" onclick="rdirt(150)">10</button>
+            <button class="btn" onclick="rdirt(151)">11</button>
+            <button class="btn" onclick="rdirt(152)">12</button>
+            <button class="btn" onclick="rdirt(153)">13</button>
+            <button class="btn" onclick="rdirt(154)">14</button>
+            <button class="btn" onclick="rdirt(155)">15</button>
+            <button class="btn" onclick="rdirt(156)">16</button>
+            <button class="btn" onclick="rdirt(157)">17</button>
+            <button class="btn" onclick="rdirt(158)">18</button>
+            <button class="btn" onclick="rdirt(159)">19</button>
+            <button class="btn" onclick="rdirt(160)">20</button>
+            <button class="btn" onclick="rdirt(161)">21</button>
+            <button class="btn" onclick="rdirt(162)">22</button>
+            <button class="btn" onclick="rdirt(163)">23</button>
+            <button class="btn" onclick="rdirt(164)">24</button>
+            <button class="btn" onclick="rdirt(165)">25</button>
+            <button class="btn" onclick="rdirt(166)">26</button>
+            <button class="btn" onclick="rdirt(167)">27</button>
+            <button class="btn" onclick="rdirt(168)">28</button>
+            <button class="btn" onclick="rdirt(169)">29</button>
+            <button class="btn" onclick="rdirt(170)">30</button>
+            <button class="btn" onclick="rdirt(171)">31</button>
+            <button class="btn" onclick="rdirt(172)">32</button>
+            <button class="btn" onclick="rdirt(173)">33</button>
+            <button class="btn" onclick="rdirt(174)">34</button>
+            <button class="btn" onclick="rdirt(175)">35</button>
+            <button class="btn" onclick="rdirt(176)">36</button>
+            <button class="btn" onclick="rdirt(177)">37</button>
+            <button class="btn" onclick="rdirt(178)">38</button>
+            <button class="btn" onclick="rdirt(179)">39</button>
+            <button class="btn" onclick="rdirt(180)">40</button>
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+  </div>
+  <div id="end">
+    <div class="hend">
+      <form id="resultForm">
+        <div class="netstat" id="netstats">
+          <p>
+            ⚠️ Network disconnected. Please reconnect as soon as possible.
+          </p>
+        </div>
+        <h2>Confirm your details</h2>
+        <label for="name">Full name:
+          <input type="text" name="Full_Name" id="name" placeholder="Ajayi-Musa" required>
+        </label>
+
+        <label for="sub1">Subject 1:
+          <input type="text" name="English" id="sub1" value="English: " readonly>
+        </label>
+
+        <label for="sub2">Subject 2:
+          <input type="text" name="Subject_2" id="sub2" placeholder="Physics: " readonly>
+        </label>
+
+        <label for="sub3">Subject 3:
+          <input type="text" name="Subject_3" id="sub3" placeholder="Chemistry: " readonly>
+        </label>
+
+        <label for="sub4">Subject 4:
+          <input type="text" name="Subject_4" id="sub4" placeholder="Biology: " readonly>
+        </label>
+
+        <input type="hidden" name="Total_Score" id="scd">
+        <input type="hidden" name="Score1" id="scd1">
+        <input type="hidden" name="Score2" id="scd2">
+        <input type="hidden" name="Score3" id="scd3">
+        <input type="hidden" name="Score4" id="scd4">
+        <input type="hidden" name="TimeUsed" id="tubu">
+
+        <button type="button" id="pos">Confirm & Submit</button>
+      </form>
+    </div>
+  </div>
+  <!--script for quest-->
+  <script src="questsbk.js"></script>
+  <script src="ui.js"></script>
+  <script src="shortcuts.js"></script>
+  <!--script for parameters-->
+  <script>
+    //================================================================================================
+    //a script for parameters only
+    //for parameters
+    //=================================================================================================
+    const loading = document.getElementById('loadingDiv')
+    const pas = document.getElementById('pas')
+    let current = -1
+    let scores = []
+    let header = document.getElementById('header')
+    let opt1 = document.getElementById('opt1')
+    let opt2 = document.getElementById('opt2')
+    let opt3 = document.getElementById('opt3')
+    let opt4 = document.getElementById('opt4')
+    let opt5 = document.getElementById('opt5')
+    let nx = document.getElementById('nx')
+    let prev = document.getElementById('prev')
+    let sumb = document.getElementById('sumb')
+    let end = document.getElementById('end')
+    let main = document.getElementById('main')
+    let str = document.getElementById('str')
+    let star = document.getElementById('star')
+    let btns = document.getElementsByClassName('btn')
+    let sum;
+    let sum1
+    let sum2
+    let sum3
+    let sum4
+    let g
+    let hg = true
+    let hgg
+    let cv = document.getElementById('cv')
+    let c = document.getElementById('c')
+    let ti = document.getElementById('ti')
+    let tim = document.getElementById('tim')
+    let htim = document.getElementById('htim')
+    let mtim = document.getElementById('mtim')
+    let stim = document.getElementById('stim')
+    let qtim = 7200
+    let su2 = document.getElementById('su2')
+    let su3 = document.getElementById('su3')
+    let su4 = document.getElementById('su4')
+    let sub = document.getElementById("sub")
+    let cbtn = document.getElementById('cbtn')
+    let obtn = document.getElementById('obtn')
+    let fin1 = document.getElementById('fin1')
+    let fin2 = document.getElementById('fin2')
+    let un = document.getElementById('un')
+    let im = document.getElementById('im')
+    let name = document.getElementById('name')
+    let sub1 = document.getElementById('sub1')
+    let sub2 = document.getElementById('sub2')
+    let sub3 = document.getElementById('sub3')
+    let sub4 = document.getElementById('sub4')
+    let scd = document.getElementById('scd')
+    let scd1 = document.getElementById('scd1')
+    let scd2 = document.getElementById('scd2')
+    let scd3 = document.getElementById('scd3')
+    let scd4 = document.getElementById('scd4')
+    let pos = document.getElementById('pos')
+    let combo = JSON.parse(localStorage.getItem('combo'))
+    let ig
+    
+    let quests
+    let scor=Array(180).fill('')
+    let netstat = document.getElementById('netstat')
+    let netstats = document.getElementById('netstats')
+
+    let issubmitting = false
+    let imh 
+   
+    let tubu = document.getElementById('tubu')
+    let netstatin
+    let SHEETDB_URL = 'https://sheetlabs.com/ET/SubmissionsDB'
+    let hhh='https://sheetdb.io/api/v1/ieinutth5wdl2'
+  </script>
+  <!--script for functions-->
+  <script>
+    //script for functions
+    //function 1
+    function getQ() {
+      
+      opt1.style.background = 'none'
+      opt2.style.background = "none"
+      opt3.style.background = "none"
+      opt4.style.background = "none"
+      opt5.style.background = 'none'
+      let rc = `img + ${current}+png`
+      if (current + 1 < quests.length) {
+        if (current >= 0) {
+          btns[current].style.outline = ""
+          btns[current].style.outlineOffset = ""
+        }
+        current++
+        col()
+        tis()
+        fhj()
+
+        if (quests[current].img != null) {
+          im.style.display = 'block'
+          im.src = quests[current].img
+          
+        } else if (quests[current].imgu != null) {
+          im.style.display = 'block'
+          im.src = quests[current].imgu
+      
+        } else {
+          im.style.display = 'none'
+        }
+        header.innerHTML = quests[current].quest
+        opt1.innerHTML = quests[current].options[0]
+        opt2.innerHTML = quests[current].options[1]
+        opt3.innerHTML = quests[current].options[2]
+   getopt4()
+getopt5()
+
+givepas()
+
+}
+      else {
+        console.log('%c quiz quest finished', 'font-size:20px;color:red;background:cyan;')
+
+      }
+    }
+    function getopt5(){
+      
+              if(typeof quests[current].options[4]  === 'string'){
+          opt5.innerHTML = quests[current].options[4]
+           opt5.style.display= 'block'
+        console.log(true)
+        }else{
+          opt5.style.display= 'none'
+          console.log(false)
+        }
+        
+    }
+function getopt4(){
+      
+              if(typeof quests[current].options[3]  === 'string'){
+          opt4.innerHTML = quests[current].options[3]
+           opt4.style.display= 'block'
+        console.log(true)
+        }else{
+          opt4.style.display= 'none'
+          console.log(false)
+        }
+        
+    }
+
+    //function2
+    function bkQ() {
+      opt1.style.background = "none"
+      opt2.style.background = "none"
+      opt3.style.background = "none"
+      opt4.style.background = "none"
+      opt5.style.background = 'none'
+
+      if (current < quests.length) {
+        if (current >= 0) {
+          btns[current].style.outline = ""
+          btns[current].style.outlineOffset = ""
+        }
+        current--
+        col()
+        tis()
+        fhj()
+        if (quests[current].img != null) {
+          im.style.display = 'block'
+          im.src = quests[current].img
+          
+        } else if (quests[current].imgu != null) {
+          im.style.display = 'block'
+          im.src = quests[current].imgu
+      
+        } else {
+          im.style.display = 'none'
+        }
+        header.innerHTML = quests[current].quest
+        opt1.innerHTML = quests[current].options[0]
+        opt2.innerHTML = quests[current].options[1]
+        opt3.innerHTML = quests[current].options[2]
+        getopt4()
+getopt5()
+givepas()
+      } else {
+        console.log('%c quiz quest reversed', 'font-size:20px;color:red;background:cyan;')
+      }
+    }
+    //function 3
+    //for scores
+    function sco(val) {
+      scor[current]= val
+      if (val == quests[current].answer) {
+        if (current >= 0 && current < 60) {
+          scores[current] = 1.7
+        } else {
+          scores[current] = 2.5
+        }
+      } else {
+        scores[current] = 0
+      }
+    }
+    //function4
+
+
+    function col() {
+      let cur = current;
+      btns[cur].style.outline = "2px solid white";
+      btns[cur].style.outlineOffset = "2px";
+      btns[cur].style.color = "white";
+
+      // Answered: blue (correct or incorrect)
+      if (scores[cur] === 1.7 || scores[cur] === 2.5 || scores[cur] === 0) {
+        btns[cur].style.background = 'blue';
+      } else {
+        // Unanswered: white
+        btns[cur].style.background = 'var(--surface2)';
+      }
+    }
+
+
+
+
+
+    //function 5
+    //function for btns
+    function rdirt(num) {
+
+      btns[current].style.outline = ""
+      btns[current].style.outlineOffset = ""
+      opt1.style.background = "none"
+      opt2.style.background = "none"
+      opt3.style.background = "none"
+      opt4.style.background = "none"
+      opt5.style.background = 'none'
+      current = num - 1
+      col()
+      tis()
+      fhj()
+      if (quests[current].img != null) {
+        im.style.display = 'block'
+        im.src = quests[current].img
+        
+      } else if (quests[current].imgu != null) {
+        im.style.display = 'block'
+        im.src = quests[current].imgu
+    
+      } else {
+        im.style.display = 'none'
+      }
+      header.innerHTML = quests[current].quest
+      opt1.innerHTML = quests[current].options[0]
+      opt2.innerHTML = quests[current].options[1]
+      opt3.innerHTML = quests[current].options[2]
+ getopt4()
+getopt5()
+givepas()
+    }
+    //function 6
+    //functions for background when clicked
+    function pain1() {
+      opt1.style.background = "blue"
+      opt2.style.background = "none"
+      opt3.style.background = "none"
+      opt4.style.background = "none"
+      opt5.style.background ='none'
+    }
+    //subfunction
+    function pain2() {
+      opt1.style.background = "none"
+      opt2.style.background = "blue"
+      opt3.style.background = "none"
+      opt4.style.background = "none"
+      opt5.style.background ='none'
+    }
+    //subfunction
+    function pain3() {
+      opt1.style.background = "none"
+      opt2.style.background = "none"
+      opt3.style.background = "blue"
+      opt4.style.background = "none"
+opt5.style.background ='none'
+    }
+    //subfunction
+    function pain4() {
+      opt1.style.background = "none"
+      opt2.style.background = "none"
+      opt3.style.background = "none"
+      opt4.style.background = "blue"
+opt5.style.background ='none'
+    }
+function pain5(){
+opt1.style.background = "none"
+      opt2.style.background = "none"
+      opt3.style.background = "none"
+      opt5.style.background = "blue"
+opt4.style.background ='none'
+}
+    //function 7
+    function sbt() {
+      if (hg) {
+        g = confirm('Are you sure you want to submit')
+        if (g) {
+          clearInterval(stim)
+          sum = 0
+          sum1 = 0
+          sum2 = 0
+          sum3 = 0
+          sum4 = 0
+          for (let s = 0; s < scores.length; s++) {
+            sum = sum + +scores[s]
+            console.log(sum)
+          }
+          scd.value = sum
+          for (let s = 0; s <= 59; s++) {
+            sum1 = sum1 + +scores[s]
+            console.log(sum1)
+          }
+          scd1.value = sum1
+          for (let s = 60; s <= 99; s++) {
+            sum2 = sum2 + +scores[s]
+            console.log(sum2)
+          }
+          scd2.value = sum2
+          for (let s = 100; s <= 139; s++) {
+            sum3 = sum3 + +scores[s]
+            console.log(sum3)
+          }
+          scd3.value = sum3
+          for (let s = 140; s <= 179; s++) {
+            sum4 = sum4 + +scores[s]
+            console.log(sum4)
+          }
+          scd4.value = sum4
+
+          localStorage.setItem('score', sum)
+          end.style.display = "block"
+          main.style.display = 'none'
+        }} else {
+        clearInterval(stim)
+        sum = 0
+        sum1 = 0
+        sum2 = 0
+        sum3 = 0
+        sum4 = 0
+        for (let s = 0; s < scores.length; s++) {
+          sum = sum + +scores[s]
+          console.log(sum)
+        }
+        scd.value = sum
+        for (let s = 0; s <= 59; s++) {
+          sum1 = sum1 + +scores[s]
+          console.log(sum1)
+        }
+        scd1.value = sum1
+        for (let s = 60; s <= 99; s++) {
+          sum2 = sum2 + +scores[s]
+          console.log(sum2)
+        }
+        scd2.value = sum2
+        for (let s = 100; s <= 139; s++) {
+          sum3 = sum3 + +scores[s]
+          console.log(sum3)
+        }
+        scd3.value = sum3
+        for (let s = 140; s <= 179; s++) {
+          sum4 = sum4 + +scores[s]
+          console.log(sum4)
+        }
+        scd4.value = sum4
+
+        localStorage.setItem('score', sum)
+        end.style.display = "block"
+        main.style.display = 'none'
+      }
+    }
+    //function 8
+    function stars() {
+      loading.style.display = "flex"
+      setTimeout(
+        function () {
+          loading.style.display = 'none'
+          tims()
+        }, 4000)
+        
+    getQ() 
+pickpas()
+passcon()
+getQ()
+bkQ()
+
+      main.style.display = "block"
+      str.style.display = 'none'
+      end.style.display = "none"
+      localStorage.removeItem('score')
+
+      let y
+      if (fin1.value != "" && fin2.value != "") {
+        y = fin1.value + "-" + fin2.value
+        un.innerHTML = y
+      } else {
+        y = 'Musa-Ajayi'
+        un.innerHTML = y
+      }
+    }
+    //function9
+    function Add(vals) {
+      ig= true
+        dis.value += vals
+     
+    }
+    function addsqrt(){
+    
+    let ans
+    if(dis.value!= ''){
+    if(typeof dis.value != 'string' ){
+      ans= 'Error'
+    }else{
+      let a = dis.value
+        let ah =   eval(a)
+        let an = +ah
+      ans =  Math.sqrt(an)
+    }
+   dis.value=ans
+    }
+    }
+    
+    // Safe calculator evaluator — no eval(). Add() only ever appends
+    // digits, ., and + - * / to dis.value, but we still validate
+    // defensively since dis is a normal text input.
+    function safeCac(expr) {
+      if (typeof expr !== 'string') {
+        return 'Error'
+      }
+    //  const tokens = expr.match(/(\d+\.?\d*|\.\d+|[+\-*/])/g)
+   //   if (!tokens || tokens.length === 0) return 'Error'
+     // let pass1 = [tokens[0]]
+   //   for (let i = 1; i < tokens.length; i += 2) {
+    //    const op = tokens[i]
+     //   const next = tokens[i + 1]
+     //   if (next === undefined) break
+     //   if (op === '*' || op === '/') {
+    //      const a = parseFloat(pass1.pop())
+     //     const b = parseFloat(next)
+    //      pass1.push(String(op === '*' ? a * b: a / b))
+    //a   } else {
+    //      pass1.push(op, next)
+    //    }
+  //a   }
+      let result = parseFloat(pass1[0])
+      if (Number.isNaN(result)) return 'Error'
+      for (let i = 1; i < pass1.length; i += 2) {
+        const op = pass1[i]
+        const val = parseFloat(pass1[i + 1])
+        if (Number.isNaN(val)) return 'Error'
+        result = op === '+' ? result + val: result - val
+      }
+      return Number.isFinite(result) ? result: 'Error'
+    }
+    function safeCalc(expr){
+      try{
+        if(expr == 'Error'){
+          return 'Math Error'
+        }else{
+        return eval(expr)
+      }
+      }
+      catch{
+        return 'Math Error'
+      }
+    }
+function parseqrt(expr){
+  // Replace √(anything) with Math.sqrt(anything)
+  return expr.replaceAll('√(', 'Math.sqrt(');
+}
+    function clac() {
+      
+      let val = dis.value
+      if(dis.value!= ''){
+      let vals = val
+      const ans = safeCalc(vals)
+      dis.value = ans
+      }
+    }
+    //function 10
+    function sw() {
+      const backdrop = document.getElementById('calc-backdrop');
+      if (c.style.display == "block") {
+        c.style.display = "none";
+        backdrop.classList.remove('visible');
+      } else {
+        c.style.display = "block";
+        if (window.innerWidth < 400) backdrop.classList.add('visible');
+        setTimeout(function() {
+          dis.focus();
+        }, 50);
+      }
+    }
+    //function 11
+    function cls() {
+      dis.value = ''
+    }
+    //function12
+    function bksp() {
+      let di = dis.value
+      let d = di.slice(0, -1)
+      dis.value = d
+    }
+    //function13
+    function cvs() {
+      if (c.style.display == "block") {
+        c.style.display = "none"
+      } else {
+        c.style.display = "block"
+      }
+    }
+    //function14
+    function tis() {
+
+      if (current >= 0 && current < 60) {
+
+        ti.innerHTML = current + 1
+      } else if (current > 59 && current < 100) {
+        ti.innerHTML = current - 60 + 1
+      } else if (current > 99 && current < 140) {
+        ti.innerHTML = current - 100 + 1
+      } else {
+        ti.innerHTML = current - 140 + 1
+      }
+    }
+
+    //function 15
+    function htims() {
+      if (qtim > 0) {
+        qtim--
+        let h = Math.floor(qtim/3600)
+        let m = Math.floor((qtim%3600)/60)
+        let s = Math.floor(qtim%60)
+        htim.innerHTML = h
+        mtim.innerHTML = m
+        stim.innerHTML = s
+        if (stim.innerHTML.length == 1) {
+          stim.innerHTML = '0' + stim.innerHTML
+        }
+        if (mtim.innerHTML.length == 1) {
+          mtim.innerHTML = '0' + mtim.innerHTML
+        }
+        if (htim.innerHTML.length == 1) {
+          htim.innerHTML = '0' + htim.innerHTML
+        }
+      } else {
+        clearInterval(stim)
+        hg = false
+        g = true
+        sbt()
+        console.log('click')
+        end.style.display = "block"
+        main.style.display = "none"
+      }
+    }
+    //function16
+    function tims() {
+      let smit = setInterval(htims, 1000)
+      // SecureTimer runs independently as the tamper-resistant source
+      // of truth. If the visible qtim countdown is ever manipulated
+      // client-side, SecureTimer's own localStorage/#ts deadline still
+      // forces submission when the real time is up.
+      SecureTimer.start(qtim * 1000)
+      document.addEventListener('securetimer:end', function onEnd() {
+        document.removeEventListener('securetimer:end', onEnd)
+        if (end.style.display !== 'block') {
+          sbt()
+          end.style.display = 'block'
+          main.style.display = 'none'
+        }
+      })
+    }
+    //function 17
+    function subs() {
+      sub.style.display = "none"
+      obtn.style.display = 'block'
+    }
+    //function 18
+    function hsubs() {
+      sub.style.display = "block"
+      obtn.style.display = 'none'
+    }
+    //function 19
+    //function to fill scores array to make it easier to score and management
+    function sz () {
+      for (let i = 0; i < 180; i++) {
+        scores[i] = ''
+      }
+    }
+    //function 20
+    //function for quiz lang selector
+
+
+
+    function ccae() {
+      // Each subject bank is shuffled and spliced by getExamQuestions():
+      // English -> 60 questions, every other subject -> 40 questions.
+      // This runs once per exam session so every candidate gets a fresh set.
+      if (combo.name == 'Biology') {
+        su2.innerHTML = 'Physics'
+        su3.innerHTML = 'Chemistry'
+        su4.innerHTML = 'Biology'
+        quests = [...getExamQuestions('English'),
+          ...getExamQuestions('Physics'),
+          ...getExamQuestions('Chemistry'),
+          ...getExamQuestions('Biology')]
+      } else if (combo.name == 'Mathematics') {
+        su2.innerHTML = 'Physics'
+        su3.innerHTML = 'Chemistry'
+        su4.innerHTML = 'Mathematics'
+        quests = [...getExamQuestions('English'),
+          ...getExamQuestions('Physics'),
+          ...getExamQuestions('Chemistry'),
+          ...getExamQuestions('Mathematics')]
+      } else if (combo.name == 'Economics') {
+        su2.innerHTML = 'Mathematics'
+        su3.innerHTML = 'Commerce'
+        su4.innerHTML = 'Economics'
+        quests = [...getExamQuestions('English'),
+          ...getExamQuestions('Mathematics'),
+          ...getExamQuestions('Commerce'),
+          ...getExamQuestions('Economics')]
+      } else if (combo.name == 'Government') {
+        su2.innerHTML = 'Mathematics'
+        su3.innerHTML = 'Economics'
+        su4.innerHTML = 'Government'
+        quests = [...getExamQuestions('English'),
+          ...getExamQuestions('Mathematics'),
+          ...getExamQuestions('Economics'),
+          ...getExamQuestions('Government')]
+      } else if (combo.name == 'Literature') {
+        su2.innerHTML = 'Government'
+        su3.innerHTML = 'CRS'
+        su4.innerHTML = 'Literature'
+        quests = [...getExamQuestions('English'),
+          ...getExamQuestions('Government'),
+          ...getExamQuestions('CRS'),
+          ...getExamQuestions('Literature')]
+      } else if (combo.name == 'History') {
+        su2.innerHTML = ' Literature'
+        su3.innerHTML = 'Government'
+        su4.innerHTML = 'History'
+        quests = [...getExamQuestions('English'),
+          ...getExamQuestions('Literature'),
+          ...getExamQuestions('Government'),
+          ...getExamQuestions('History')]
+      } else if (combo.name == 'CRS') {
+        su2.innerHTML = ' Literature'
+        su3.innerHTML = 'Government'
+        su4.innerHTML = 'CRS'
+        quests = [...getExamQuestions('English'),
+          ...getExamQuestions('Literature'),
+          ...getExamQuestions('Government'),
+          ...getExamQuestions('CRS')]
+      }
+
+    }
+    //function 21
+    //submit to server
+    async function fsts() {
+
+      qtim = 7200 - qtim
+
+      issubmitting = true
+      let h = Math.floor(qtim/3600)
+      let m = Math.floor((qtim%3600)/60)
+      let s = Math.floor(qtim%60)
+      name.value = un.innerHTML
+      localStorage.setItem('name', name.value)
+      sub2.value = su2.innerHTML
+      sub3.value = su3.innerHTML
+      sub4.value = su4.innerHTML
+      tubu.value = `${h}h${m}m${s}s`
+      localStorage.setItem('tu', tubu.value)
+      scd.value = Math.round(localStorage.getItem('score'))
+      function getDate() {
+        let now = new Date();
+        return now.toLocaleDateString('en-GB'); // DD/MM/YYYY
+      }
+      function getTime() {
+        let now = new Date();
+        return now.toLocaleTimeString('en-GB'); // HH:MM:SS
+      }
+
+      let data = {
+        name: name.value,
+        subject1: 'Use of English',
+        subject2: sub2.value,
+        subject3: sub3.value,
+        subject4: sub4.value,
+        score1: Math.round(scd1.value),
+        score2: Math.round(scd2.value),
+        score3: Math.round(scd3.value),
+        score4: Math.round(scd4.value),
+        total: scd.value,
+        date: getDate(),
+        time: getTime(),
+        timeused: tubu.value
+      }
+      localStorage.setItem("data", JSON.stringify(data))
+      localStorage.setItem('quest', JSON.stringify(quests))
+      localStorage.setItem('scores', JSON.stringify(scor))
+      await submitRes(data)
+      console.log(data)
+
+    }
+    function fhj() {
+      hj.max = quests.length
+      hj.value = current + 1
+    }
+
+  </script>
+  <script>
+
+    document.addEventListener('keydown', function(e) {
+      if (c.style.display !== 'block') return;
+      if (document.activeElement === dis) return; // handled by dis's own listener
+      const allowed = '0123456789.+-*/';
+      if (allowed.includes(e.key)) {
+        e.preventDefault();
+        Add(e.key);
+      } else if (e.key === 'Enter' || e.key === '=') {
+        e.preventDefault();
+        clac();
+      } else if (e.key === 'Backspace') {
+        e.preventDefault();
+        bksp();
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+        sw();
+      } else if (e.key === 'Delete') {
+        e.preventDefault();
+        cls();
+      }
+    });
+
+  </script>
+
+  <script>
+    //script for event
+
+    nx.addEventListener('click',
+      getQ)
+
+    opt1.addEventListener('click',
+      function() {
+        col()
+        pain1()
+      })
+    opt2.addEventListener('click',
+      function() {
+        col()
+        pain2()
+      })
+    opt3.addEventListener('click',
+      function() {
+        col()
+        pain3()
+      })
+    opt4.addEventListener('click',
+      function() {
+        col()
+        pain4()
+      })
+      opt5.addEventListener('click',
+      function() {
+        col()
+        pain5()
+      })
+    prev.addEventListener('click',
+      bkQ)
+    sumb.addEventListener('click',
+      sbt)
+    //sumb.addEventListener("click", fsts)
+    star.addEventListener('click',
+      stars)
+
+    btn3.addEventListener('click',
+      clac)
+    btn4.addEventListener('click',
+      clac)
+    btn5.addEventListener('click',
+      cls)
+    btn6.addEventListener('click',
+      bksp)
+    cv.addEventListener('click',
+      cvs)
+    cbtn.addEventListener('click',
+      subs)
+    obtn.addEventListener('click',
+      hsubs)
+    sz()
+    //opt1.addEventListener('dblclick',cls)
+    //opt2.addEventListener('dblclick',cls)
+    //opt3.addEventListener('dblclick',cls)
+    //opt4.addEventListener('dblclick',cls)
+    ccae()
+    pos.addEventListener('click',
+      fsts)
+    Shortcuts.init()
+
+  </script>
+  <script>
+    // ============================================================
+    // SecureTimer — tamper-resistant countdown.
+    // Keeps its own private state behind a closure; the only way in
+    // or out is start()/getTime(). Mirrors the deadline into
+    // localStorage("st") and the hidden #ts input so a page reload,
+    // a clock hack, or a devtools variable edit can be caught by
+    // comparing the two independent copies.
+    // ============================================================
+    const SecureTimer = (function () {
+      let st = null; // session token / start marker
+      let dur = 0; // total duration in ms
+      let deadline = 0; // absolute end time (ms since epoch)
+      let iv = null; // interval handle
+      let paused = false;
+      let tsInput = null;
+
+      function persist() {
+        try {
+          localStorage.setItem('st', String(deadline));
+        } catch (e) {
+          /* storage unavailable — degrade silently */
+        }
+        tsInput = tsInput || document.getElementById('ts');
+        if (tsInput) tsInput.value = String(deadline);
+      }
+
+      function readBoth() {
+        let lsVal = null;
+        try {
+          lsVal = localStorage.getItem('st');
+        } catch (e) {}
+        tsInput = tsInput || document.getElementById('ts');
+        const inputVal = tsInput ? tsInput.value: null;
+        return {
+          lsVal,
+          inputVal
+        };
+      }
+
+      function checkTamper() {
+        const {
+          lsVal,
+          inputVal
+        } = readBoth();
+        if (lsVal == null || inputVal == null || lsVal === '' || inputVal === '') return false;
+        return String(lsVal) !== String(inputVal);
+      }
+
+      function tick() {
+        if (paused) return;
+        if (checkTamper()) {
+          AntiCheat._logViolation('Timer mismatch detected');
+          // Trust the earlier (smaller) deadline so tampering can only
+          // shorten, never extend, the remaining time.
+          const {
+            lsVal,
+            inputVal
+          } = readBoth();
+          deadline = Math.min(Number(lsVal) || deadline, Number(inputVal) || deadline);
+          persist();
+        }
+        const remaining = deadline - Date.now();
+        if (remaining <= 0) {
+          clearInterval(iv);
+          iv = null;
+          document.dispatchEvent(new CustomEvent('securetimer:end'));
+          return;
+        }
+        document.dispatchEvent(new CustomEvent('securetimer:tick', {
+          detail: {
+            remaining
+          }
+        }));
+      }
+
+      function start(ms) {
+        dur = ms;
+        deadline = Date.now() + ms;
+        persist();
+        if (iv) clearInterval(iv);
+        iv = setInterval(tick, 1000);
+        window.addEventListener('blur', () => {
+          paused = true;
+        });
+        window.addEventListener('focus', () => {
+          paused = false;
+        });
+      }
+
+      function getTime() {
+        return Math.max(0, deadline - Date.now());
+      }
+
+      return {
+        start: start,
+        getTime: getTime
+      };
+    })();
+    Object.freeze(SecureTimer);
+
+    // ============================================================
+    // AntiCheat — locks down the exam surface and watches for
+    // tampering signals. Violations are logged to window.clog and
+    // surfaced through the #cb banner + UI.toast (never alert()).
+    // ============================================================
+    const AntiCheat = (function () {
+      let warningCount = 0;
+      let devtoolsOpen = false;
+      let inactivityTimer = null;
+      const INACTIVITY_LIMIT_MS = 60000;
+      const DEVTOOLS_THRESHOLD = 160;
+
+      window.clog = window.clog || [];
+
+      function _logViolation(reason) {
+        const entry = {
+          reason: reason,
+          at: new Date().toISOString()
+        };
+        window.clog.push(entry);
+        renderBanner(reason);
+      }
+      
+
+      function renderBanner(msg) {
+        const cb = document.getElementById('cb');
+        if (!cb) return;
+        cb.textContent = '⚠ ' + msg;
+        cb.classList.add('cb-show');
+        clearTimeout(renderBanner._t);
+        renderBanner._t = setTimeout(() => cb.classList.remove('cb-show'), 4000);
+      }
+
+      function warn(msg) {
+        if (window.UI) UI.toast(msg, 'warning');
+        renderBanner(msg);
+      }
+
+      function terminateExam(reason) {
+        _logViolation('TERMINATED: ' + reason);
+        if (typeof tim !== 'undefined') clearInterval(tim);
+        try {
+          localStorage.setItem('score', 0);
+        } catch (e) {}
+        if (typeof scd !== 'undefined' && scd) scd.value = 0;
+        if (window.UI) {
+          UI.modal('Exam Terminated', 'This session was ended: ' + reason, function () {
+            if (typeof sbt === 'function') sbt();
+          });
+        } else if (typeof sbt === 'function') {
+          sbt();
+        }
+      }
+
+      function resetInactivity() {
+        clearTimeout(inactivityTimer);
+        inactivityTimer = setTimeout(() => {
+          _logViolation('Inactivity for 60s');
+          warn('No activity detected — please continue your exam');
+        }, INACTIVITY_LIMIT_MS);
+      }
+
+      function init() {
+        // Block right-click
+        document.addEventListener('contextmenu', function (e) {
+          e.preventDefault();
+          _logViolation('Right-click blocked');
+        });
+
+        // Block copy / paste / cut
+        document.addEventListener('copy', function (e) {
+          e.preventDefault();
+          _logViolation('Copy blocked');
+        });
+        document.addEventListener('paste', function (e) {
+          e.preventDefault();
+          _logViolation('Paste blocked');
+        });
+        document.addEventListener('cut', function (e) {
+          e.preventDefault();
+          _logViolation('Cut blocked');
+        });
+
+        // Block text selection / drag
+        document.addEventListener('selectstart', function (e) {
+          e.preventDefault();
+        });
+        document.addEventListener('dragstart', function (e) {
+          e.preventDefault();
+        });
+
+        // Block devtools / view-source key combos
+        document.addEventListener('keydown', function (e) {
+          if (e.keyCode === 123) {
+            // F12
+            e.preventDefault();
+            warn('Developer tools disabled during exam');
+            return false;
+          }
+          if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
+            e.preventDefault();
+            warn('Developer tools disabled during exam');
+            return false;
+          }
+          if (e.ctrlKey && e.keyCode === 85) {
+            // Ctrl+U
+            e.preventDefault();
+            warn('View source disabled');
+            return false;
+          }
+          if (e.keyCode === 122) {
+            // F11
+            e.preventDefault();
+            warn('Fullscreen disabled during exam');
+            return false;
+          }
+          if (e.ctrlKey && e.shiftKey && e.keyCode === 75) {
+            // Firefox console
+            e.preventDefault();
+            return false;
+          }
+        });
+
+        // Devtools-open heuristic via viewport delta
+        setInterval(function () {
+          const widthDiff = window.outerWidth - window.innerWidth;
+          const heightDiff = window.outerHeight - window.innerHeight;
+          if (widthDiff > DEVTOOLS_THRESHOLD || heightDiff > DEVTOOLS_THRESHOLD) {
+            if (!devtoolsOpen) {
+              devtoolsOpen = true;
+              terminateExam('DevTools detected');
+            }
+          } else {
+            devtoolsOpen = false;
+          }
+        },
+          500);
+
+
+        // NOTE: intentionally not terminating on resize — a maximised
+        // browser window is indistinguishable from "fullscreen" here,
+        // and would wrongly fail honest candidates. DevTools-open and
+        // tab-switch checks above already cover the real threats.
+
+        // Tab switch / blur detection
+        document.addEventListener('visibilitychange',
+          function () {
+            if (document.hidden && typeof main !== 'undefined' && main && main.style.display !== 'none') {
+              warningCount++;
+              _logViolation('Tab switch #' + warningCount);
+              if (warningCount >= 2) {
+                terminateExam('Tab switching detected');
+              } else {
+                warn('Warning ' + warningCount + '/2: Do not leave the exam window');
+              }
+            }
+          });
+
+        // Inactivity detection (60s)
+        ['mousemove', 'keydown', 'click', 'scroll', 'touchstart'].forEach(function (evt) {
+          document.addEventListener(evt, resetInactivity, {
+            passive: true
+          });
+        });
+        resetInactivity();
+      }
+
+      return {
+        init: init, _logViolation: _logViolation
+      };
+    })();
+    Object.freeze(AntiCheat);
+
+    AntiCheat.init();
+
+    window.addEventListener('beforeunload', (e) => {
+      if (issubmitting) return;
+      e.preventDefault();
+      e.returnValue = '';
+    });
+    function netstatus() {
+      if (navigator.onLine) {
+        netstat.style.display = 'none'
+        netstats.style.display = 'none'
+        pos.disabled = false
+        pos.innerHTML = 'Confirm and submit'
+      } else {
+        netstat.style.display = 'grid'
+        netstats.style.display = 'grid'
+        pos.disabled = true
+        pos.innerHTML = 'Connect to the internet to submit'
+
+      }
+    }
+    function netstatinter() {
+      netstatin = setInterval (netstatus, 1000)
+    }
+    netstatinter()
+
+
+    async function submitRes(data) {
+      try {
+        loading.style.display = "flex"
+        const res = await fetch(SHEETDB_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+        //  body: JSON.stringify({
+          //  data: [data]}) // <-- SheetDB needs {data: [obj]}
+          body: JSON.stringify([data]) // <-- SheetDB needs {data: [obj]}
+        });
+        if (!res.ok) throw new Error("Submit failed: " + res.status);
+        window.location.replace('thanks.html') // after console.log(data)
+
+      } catch(e) {
+
+        console.error(e);
+      } finally {
+        loading.style.display = "none"
+      }
+    }
+    sub.addEventListener('dblclick', () => {
+      if (sub.style.display == 'none') {
+        hsubs()
+      } else {
+        subs()
+      }
+    })
+    c.addEventListener('dblclick',
+      () => {
+        ig= false
+        if (c.style.display == 'none' && ig) {
+          c.style.display = 'block'
+        } else {
+          c.style.display = 'none'
+        }
+      })
+function givepas(){
+  if(quests[current].passage){
+    im.style.display= 'none'
+    
+    pas.style.display= 'block'
+    
+  }else{
+    pas.style.display= 'none'
+  }
+}
+function passcon(){
+  imh = document.createElement('p')
+    imh.id='pass'
+    imh.className='im'
+  
+  
+   imh.innerHTML="<span class='special'>Comprehension Passage </span><br>"
+   imh.innerHTML =` <span class='special'>Comprehension Passage </span><br> ${passage[quests[current].passageid]}`
+    pas.appendChild(imh)
+}
+  </script>
+  <script>
+      if ("serviceWorker" in navigator) {
+         navigator.serviceWorker.register("/sw.js")
+      .then(() => console.log("Service Worker registered"))
+         .catch(err => console.log("Service Worker error:", err));   }
+         
+         </script>
+         <script>
+           function pickpas() {
+  hgg = Math.floor(Math.random() * passage.length)
+  let h = +hgg
+  if (h == 1) {
+    quests[0] = passquest[0]
+    quests[1] = passquest[1]
+    quests[2] = passquest[2]
+    quests[3] = passquest[3]
+    quests[4] = passquest[4]
+  } else if (h == 2) {
+    quests[0] = passquest[5]
+    quests[1] = passquest[6]
+    quests[2] = passquest[7]
+    quests[3] = passquest[8]
+    quests[4] = passquest[9]
+  } else if (h == 3) {
+    quests[0] = passquest[10]
+    quests[1] = passquest[11]
+    quests[2] = passquest[12]
+    quests[3] = passquest[13]
+    quests[4] = passquest[14]
+  } else if (h == 4) {
+    quests[0] = passquest[15]
+    quests[1] = passquest[16]
+    quests[2] = passquest[17]
+    quests[3] = passquest[18]
+  }
+  else if (h == 5) {
+    quests[0] = passquest[19]
+    quests[1] = passquest[20]
+    quests[2] = passquest[21]
+    quests[3] = passquest[22]
+    quests[4] = passquest[23]
+  }else{
+    return false
+  }
+}
+         </script>
+</body>
+</html>

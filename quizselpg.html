@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ET CBT Subject Selection</title>
+  <link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0d47a1">
+<link rel="icon" href="/icons/icon-192.png">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #dbeafe;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --warning: #dc2626;
+      --success: #16a34a;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    }
+    @media (prefers-color-scheme: dark) {
+:root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --border: #334155;
+      --primary-light: #1e293b;
+      --shadow: 0 1px 3px rgba(0,0,0,0.3);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.4);
+    }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px 16px 80px;
+    }
+
+    /* HEADER */
+      header {
+      text-align: center;
+      margin: 10px 0 40px;
+    }
+    header h1 {
+      color: var(--primary);
+      margin: 0;
+      font-size: clamp(24px, 5vw, 36px);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 15px;
+      margin-top: 8px;
+    }
+    header p b {
+      color: var(--warning);
+      }
+
+      /* TABS */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      padding: 6px;
+      background: var(--card);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      max-width: 520px;
+      margin-inline: auto;
+    }
+    .tab {
+      padding: 10px 20px;
+      background: transparent;
+      color: var(--muted);
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      border: none;
+      transition: all 0.2s ease;
+      flex: 1;
+    }
+    .tab:hover {
+      background: var(--primary-light);
+      color: var(--primary);
+      }
+      .tab.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(37,99,235,0.3);
+      }
+
+      /* SEARCH */
+    .search-wrap {
+      max-width: 700px;
+      margin: 0 auto 40px;
+      position: relative;
+    }
+    .search-wrap input {
+      width: 100%;
+      padding: 16px 20px 16px 50px;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      background: var(--card);
+      color: var(--text);
+      font-size: 15px;
+      box-shadow: var(--shadow);
+      transition: all 0.2s;
+      font-family: 'Inter';
+    }
+    .search-wrap::before {
+      content: "🔍";
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      pointer-events: none;
+    }
+    .search-wrap input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37,99,235,0.1);
+      outline: none;
+    }
+
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 24px;
+    }
+
+    /* CARD */
+    .card {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+      }
+      .card.active {
+      border: 2px solid var(--primary);
+      background: linear-gradient(135deg, var(--primary-light), var(--card));
+      }
+
+      .category-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fef3c7;
+      color: #92400e;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      align-self: flex-start;
+    }
+    .card h2 {
+      margin: 0 0 16px;
+      color: var(--primary);
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .subjects {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 18px;
+      line-height: 1.8;
+    }
+    .subjects b {
+      color: var(--text);
+      font-weight: 600;
+    }
+    .english {
+      color: var(--warning);
+      font-weight: 700;
+    }
+
+    /* COURSES */
+    .courses-section {
+      border-top: 1px dashed var(--border);
+      margin-top: 16px;
+      padding-top: 16px;
+      flex-grow: 1;
+    }
+    .courses-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .courses-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .course-item {
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 12.5px;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+      font-family: 'Inter';
+    }
+    .course-item:hover {
+      background: var(--primary);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(37,99,235,0.2);
+      }
+
+      /* BUTTON */
+    .btn {
+      margin-top: 20px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      border: none;
+      padding: 14px 18px;
+      border-radius: 12px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: 700;
+      font-size: 15px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 10px rgba(37,99,235,0.25);
+      font-family: 'Inter';
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(37,99,235,0.35);
+      }
+      .btn:active {
+      transform: scale(0.97);
+      }
+      .card.active .btn {
+      background: linear-gradient(135deg, var(--success), #15803d);
+      box-shadow: 0 4px 10px rgba(22,163,74,0.25);
+      }
+
+      .note {
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 40px;
+      padding: 16px 20px;
+      background: var(--card);
+      border-radius: 12px;
+      max-width: 650px;
+      margin-inline: auto;
+      border: 1px solid var(--border);
+      }
+      .empty {
+      text-align: center;
+      grid-column: 1/-1;
+      padding: 60px 20px;
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    @media (max-width: 640px) {
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+      .courses-grid {
+        grid-template-columns: 1fr;
+      }
+      .tabs {
+        padding: 4px;
+        gap: 6px;
+      }
+      .tab {
+        padding: 9px 12px;
+        font-size: 13px;
+      }
+      .card {
+        padding: 20px;
+      }
+    }
+    </style>
+    <script src="ui.js"></script>
+  </head>
+  <body>
+
+    <div class="container">
+      <header>
+        <h1>Select Your JAMB Subject Combination</h1>
+        <p>
+          Standard JAMB: 4 Subjects. <b>English Language is Compulsory.</b>
+        </p>
+      </header>
+
+      <div class="tabs">
+        <button class="tab active" onclick="filterByCategory('All', this)">All</button>
+        <button class="tab" onclick="filterByCategory('Science', this)">Science</button>
+        <button class="tab" onclick="filterByCategory('Commercial', this)">Commercial</button>
+        <button class="tab" onclick="filterByCategory('Arts', this)">Arts</button>
+      </div>
+
+      <div class="search-wrap">
+        <input type="text" id="search" placeholder="Search course: Medicine, Law, Engineering...">
+      </div>
+
+      <div class="grid" id="comboGrid"></div>
+
+      <p class="note">
+        <code>Your selected combo will be used to get your questions</code>
+      </p>
+    </div>
+
+    <script>
+      // STANDARD JAMB COMBOS: name = 4th subject. This is what backend uses
+      const combos = [{
+        category: "Science",
+        name: "Biology",
+        subjects: ["English Language",
+          "Physics",
+          "Chemistry",
+          "Biology"],
+        courses: ["Medicine",
+          "Pharmacy",
+          "Nursing",
+          "Biochemistry",
+          "Microbiology",
+          "Agriculture",
+          "Zoology",
+          "Dentistry"]
+      },
+        {
+          category: "Science",
+          name: "Mathematics",
+          subjects: ["English Language",
+            "Physics",
+            "Chemistry",
+            "Mathematics"],
+          courses: ["Engineering",
+            "Computer Science",
+            "Architecture",
+            "Statistics",
+            "Physics",
+            "Data Science",
+            "Mathematics and Statistics"]
+        },
+        {
+          category: "Commercial",
+          name: "Economics",
+          subjects: ["English Language",
+            "Mathematics",
+            "Commerce",
+            "Economics"],
+          courses: ["Accounting",
+            "Banking and Finance",
+            "Business Administration",
+            "Marketing",
+            "Insurance"]
+        },
+        {
+          category: "Commercial",
+          name: "Government",
+          subjects: ["English Language",
+            "Mathematics",
+            "Economics",
+            "Government"],
+          courses: ["Public Administration",
+            "Political Science",
+            "International Relations"]
+        },
+        {
+          category: "Arts",
+          name: "Literature",
+          subjects: ["English Language",
+            "Government",
+            "CRS",
+            "Literature in English"],
+          courses: ["Law",
+            "English",
+            "History",
+            "Mass Communication",
+            "Theatre Arts"]
+        },
+        {
+          category: "Arts",
+          name: "History",
+          subjects: ["English Language",
+            "Literature in English",
+            "Government",
+            "History"],
+          courses: ["Law",
+            "Political Science",
+            "International Studies",
+            "Philosophy"]
+        },
+        {
+          category: "Arts",
+          name: "CRS",
+          subjects: ["English Language",
+            "Literature in English",
+            "Government",
+            "CRS"],
+          courses: ["Theology",
+            "Philosophy",
+            "Religious Studies",
+            "Education"]
+        }]
+
+      const grid = document.getElementById('comboGrid')
+      const search = document.getElementById('search')
+      let currentCategory = 'All'
+      const saved = JSON.parse(localStorage.getItem('combo'))
+
+      function render(list) {
+        grid.innerHTML = ''
+        if (list.length === 0) {
+          grid.innerHTML = `<div class="empty">No combination found</div>`; return
+        }
+
+        list.forEach(combo => {
+          const isActive = saved && saved.name === combo.name
+          const card = document.createElement('div')
+          card.className = 'card' + (isActive ? ' active': '')
+
+          card.innerHTML = `
+          <span class="category-badge">${combo.category}</span>
+          <h2>${combo.name} Combination</h2>
+          <div class="subjects">
+          <b>Subjects:</b><br>
+          ${combo.subjects.map(s => s.includes('English') ? `<span class="english">${s}</span>`: s).join(' + ')}
+          </div>
+
+          <div class="courses-section">
+          <div class="courses-title">📚 Related Courses - Tap to filter</div>
+          <div class="courses-grid">
+          ${combo.courses.map(c => `<button class="course-item" onclick="filterByCourse('${c}')">${c}</button>`).join('')}
+          </div>
+          </div>
+
+          <button class="btn" ${isActive ? 'autofocus': ''} onclick='selectCombo(${JSON.stringify(combo).replace(/'/g, "&apos;")})'>
+          ${isActive ? 'Continue ' + combo.name + ' Quiz': 'Start ' + combo.name + ' Quiz'}
+          </button>
+          `
+          grid.appendChild(card)
+        })
+      }
+
+      function filterAll() {
+        const term = search.value.toLowerCase()
+        let filtered = combos
+        if (currentCategory !== 'All') filtered = filtered.filter(c => c.category === currentCategory)
+        filtered = filtered.filter(c =>
+          c.name.toLowerCase().includes(term) ||
+          c.subjects.join(' ').toLowerCase().includes(term) ||
+          c.courses.join(' ').toLowerCase().includes(term)
+        )
+        render(filtered)
+      }
+
+      function filterByCategory(cat, btn) {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'))
+        btn.classList.add('active')
+        currentCategory = cat
+        search.value = ''
+        filterAll()
+      }
+
+      function filterByCourse(courseName) {
+        search.value = courseName;
+        filterAll();
+        window.scrollTo({
+          top: 0, behavior: 'smooth'
+        });
+      }
+
+      function selectCombo(combo) {
+        // STANDARD: Save full combo. Backend only needs combo.name
+        localStorage.setItem('combo', JSON.stringify(combo))
+        UI.toast(`Selected ${combo.name} Combo — ${combo.subjects.join(', ')}`, 'success')
+        setTimeout(function () {
+          window.location.href = 'instructions.html'
+        }, 900)
+      }
+
+      search.addEventListener('input', filterAll)
+      render(combos)
+    </script>
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/sw.js")
+    .then(() => console.log("Service Worker registered"))
+    .catch(err => console.log("Service Worker error:", err));
+}
+</script>
+  </body>
+</html>

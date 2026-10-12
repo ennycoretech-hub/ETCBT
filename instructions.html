@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ET CBT — Examination Instructions</title>
+  <link rel="stylesheet" href="stys.css">
+  <link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0d47a1">
+<link rel="icon" href="/icons/icon-192.png">
+  <style>
+    /* Page-specific layout only — colors/tokens all come from stys.css */
+    #instr {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 20px;
+      background: radial-gradient(ellipse at 50% 20%, #0d1a2e 0%, var(--bg) 65%);
+    }
+
+    .instr-card {
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      width: 100%;
+      max-width: 640px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      box-sizing: border-box;
+    }
+    .instr-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      border-radius: 2px;
+    }
+
+    .instr-eyebrow {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .instr-card h1 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .instr-section {
+      margin-bottom: 22px;
+    }
+    .instr-section h2 {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 10px;
+    }
+    .instr-section ol,
+    .instr-section ul {
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .instr-section li {
+      font-size: 0.9rem;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+    .instr-section li strong,
+    .instr-section li b {
+      color: var(--text);
+    }
+    .instr-section li .warn {
+      color: var(--danger);
+      font-weight: 600;
+    }
+
+    .instr-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 26px 0;
+    }
+
+    /* Acknowledgement block */
+      .ack-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      margin-bottom: 22px;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .ack-box:hover { border-color: var(--accent); }
+      .ack-box.checked {
+      border-color: var(--green);
+      background: rgba(34,197,94,0.07);
+      }
+
+      .ack-box input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+      border: 1.5px solid var(--border2);
+      border-radius: 5px;
+      background: var(--bg);
+      cursor: pointer;
+      position: relative;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .ack-box input[type="checkbox"]:checked {
+      background: var(--green);
+      border-color: var(--green);
+      }
+      .ack-box input[type="checkbox"]:checked::after {
+      content: '✓';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #071610;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+    .ack-box input[type="checkbox"]:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .ack-box label {
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.55;
+      cursor: pointer;
+      user-select: none;
+    }
+    .ack-box label b { color: var(--text); }
+
+      #proceedBtn {
+      display: block;
+      width: 100%;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      padding: 14px;
+      cursor: pointer;
+      transition: background 0.18s, transform 0.1s, box-shadow 0.18s;
+      text-transform: uppercase;
+      font-family: var(--font);
+      }
+      #proceedBtn:hover:not(:disabled) {
+      background: var(--accent-dim);
+      box-shadow: 0 7px 25px rgba(59,130,246,0.35);
+      }
+      #proceedBtn:active:not(:disabled) { transform: scale(0.985); }
+      #proceedBtn:disabled {
+      background: var(--surface3);
+      color: var(--text3);
+      cursor: not-allowed;
+    }
+
+    .instr-footnote {
+      text-align: center;
+      font-size: 0.76rem;
+      color: var(--text3);
+      margin-top: 14px;
+    }
+
+    @media (max-width: 480px) {
+      .instr-card { padding: 28px 20px; }
+      .instr-card h1 { font-size: 1.15rem; }
+    }
+    </style>
+  </head>
+  <body>
+
+    <div id="instr">
+      <div class="instr-card">
+        <span class="instr-eyebrow">CBT Examination</span>
+        <h1>Read Before You Begin</h1>
+
+        <div class="instr-section">
+          <h2>General</h2>
+          <ol>
+            <li>This is a <b>Computer-Based Test (CBT)</b> simulating the JAMB standard format.</li>
+            <li>Your exam will contain <b>English Language (60 questions)</b> plus <b>three</b> other subjects (40 questions each) — <b>180 questions in total</b>.</li>
+            <li>You will have a fixed amount of time to complete the entire exam. The countdown timer is shown at the top of the exam screen and <span class="warn">cannot be paused or extended</span>.</li>
+            <li>When the timer reaches zero, your exam is <b>automatically submitted</b> with whatever answers you have selected at that point.</li>
+          </ol>
+        </div>
+
+        <div class="instr-section">
+          <h2>Navigation</h2>
+          <ul>
+            <li>Use <b>Next</b> and <b>Previous</b> to move between questions, or open the sidebar to jump directly to any question number.</li>
+            <li>Answered questions are colored  <b>blue</b> in the sidebar; unanswered ones remain uncolored why current quest have a white outline.</li>
+            <li>You may change your answer to any question at any time before final submission.</li>
+            <li>You may also double click the sidebar or calculator to hide its display.</li>
+            <li>Keyboard shortcuts are available: <b>A–D</b> to select an option, <b>N/S</b> for next, <b>P</b> for previous, and <b>Ctrl+Enter</b> to submit.</li>
+          </ul>
+        </div>
+
+        <div class="instr-section">
+          <h2>Conduct During the Exam</h2>
+          <ul>
+            <li><span class="warn">Do not</span> switch tabs, minimize the browser, or leave the exam window. Repeated tab-switching will <b>terminate your session</b>.</li>
+
+            <li><span class="warn">Do not</span> copy, paste, or right-click during the exam — these actions are disabled and logged.</li>
+            <li>Ensure you have a <b>stable internet connection</b> before starting. A network status banner will alert you if you go offline.</li>
+            <li>All actions during the exam are logged. Any detected violation may result in automatic termination and a recorded scores of zero.</li>
+          </ul>
+        </div>
+
+        <div class="instr-section">
+          <h2>Submission</h2>
+          <ul>
+            <li>You may submit early using the <b>Submit</b> button once you are satisfied with your answers </li>
+            <li>After submission, you will confirm your details on a summary screen before your result is sent for final recording.</li>
+            <li>Ensure you have a <b>stable internet connection</b> before submission. A network status banner will alert you if you go of banner.</li>
+            <li>Once submitted, <span class="warn">your answers cannot be changed</span>.</li>
+          </ul>
+        </div>
+
+        <div class="instr-divider"></div>
+
+        <div class="ack-box" id="ackBox">
+          <input type="checkbox" id="ackCheck">
+          <label for="ackCheck">
+            I have read and understood the instructions above. I agree to <b>abide and adhere to all instructions</b> given, and I understand that I am <b>solely responsible for the consequences</b> of any violation on my part.
+          </label>
+        </div>
+
+        <button id="proceedBtn" disabled>Proceed to Exam</button>
+        <p class="instr-footnote">
+          You must accept the terms above to continue.
+        </p>
+      </div>
+    </div>
+
+    <script src="ui.js"></script>
+    <script>
+      const ackCheck = document.getElementById('ackCheck');
+      const ackBox = document.getElementById('ackBox');
+      const proceedBtn = document.getElementById('proceedBtn');
+
+      function syncState() {
+        proceedBtn.disabled = !ackCheck.checked;
+        ackBox.classList.toggle('checked', ackCheck.checked);
+      }
+
+      ackCheck.addEventListener('change', syncState);
+
+      // Let a click anywhere on the box toggle the checkbox,
+      // without double-toggling when the checkbox itself is clicked.
+      ackBox.addEventListener('click', function (e) {
+        if (e.target !== ackCheck) {
+          ackCheck.checked = !ackCheck.checked;
+          syncState();
+        }
+      });
+
+      proceedBtn.addEventListener('click',
+        function () {
+          if (proceedBtn.disabled) return;
+          window.location.href = 'quiz.html';
+        });
+
+      syncState();
+    </script>
+    <script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/sw.js")
+    .then(() => console.log("Service Worker registered"))
+    .catch(err => console.log("Service Worker error:", err));
+}
+</script>
+  </body>
+</html>

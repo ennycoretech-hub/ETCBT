@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ET CBT Software</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+  <meta name="description" content="Practice Standard Examination questions virtually with ET CBT Software">
+  <meta name="keywords" content="CBT, cbt software, practice exam questions online, tutorial center software, JAMB CBT">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="ET CBT Software">
+  <meta property="og:description" content="Experience a realistic JAMB CBT simulation with ET CBT. Practice in an exam-like environment, get familiar with the CBT format, and prepare yourself for the real examination experience.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://etcbt.netlify.app">
+  <meta property="og:image" content="https://etcbt.netlify.app/logo.png">
+
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#0d47a1">
+  <link rel="icon" href="/icons/icon-192.png">
+  <style>
+:root {
+    --gradient: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    --bg-dark: #0a0e17;
+    --glass: rgba(255, 255, 255, 0.03);
+    --accent: #00f2fe;
+    --text-main: #e2e8f0;
+    --text-muted: #64748b;
+    --border-glass: rgba(255, 255, 255, 0.08);
+  }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: var(--bg-dark);
+      font-family: 'Roboto', sans-serif;
+      color: var(--text-main);
+      /* Refined Tech Pattern */
+      background-image: linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px),
+      linear-gradient(to bottom, #0a0e17, #1e293b);
+      background-size: 30px 30px, 30px 30px, 100% 100%;
+      overflow-x: hidden;
+    }
+
+    /* Title Top Left - Fixed positioning adjustment */
+    .page-title {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      font-family: 'Orbitron', sans-serif;
+      color: white;
+      font-size: 1.1rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border-left: 3px solid var(--accent);
+      padding-left: 15px;
+      text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+      z-index: 10;
+    }
+
+    .login-div {
+      background: rgba(16, 20, 30, 0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-glass);
+      border-radius: 16px;
+      padding: 40px;
+      width: 90%;
+      max-width: 360px;
+      /* Limits width on desktop */
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+      box-sizing: border-box;
+    }
+
+    /* Top border gradient */
+    .login-div::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 2px;
+      background: var(--gradient);
+      border-radius: 2px;
+    }
+
+    #a {
+      color: #4ade80;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.75rem;
+      text-align: center;
+      margin: -10px 0 0 0;
+      letter-spacing: 2px;
+      display: none;
+      text-transform: uppercase;
+    }
+
+    input {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border-glass);
+      border-radius: 8px;
+      padding: 15px;
+      color: white;
+      font-size: 1rem;
+      outline: none;
+      transition: all 0.3s ease;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    input:focus {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(0, 242, 254, 0.4);
+    }
+
+    .password-div {
+      pointer-events: none;
+      position: relative;
+      width: 100%;
+    }
+
+    #show {
+      border: none;
+      color: var(--accent);
+      background: none;
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 1px;
+      font-family: 'Orbitron', sans-serif;
+      opacity: 0.7;
+    }
+
+    #login {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
+      background: var(--gradient);
+      color: #0a0e17;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.9rem;
+      margin-top: 10px;
+    }
+
+    #login:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 7px 25px rgba(79, 172, 254, 0.4);
+    }
+
+    #login:disabled {
+      background: #1e293b;
+      color: #64748b;
+      cursor: not-allowed;
+    }
+
+    /* Main Page Stylized */
+    #mainpage {
+      display: none;
+      text-align: center;
+      color: white;
+      font-family: 'Roboto', sans-serif;
+      background: rgba(16, 20, 30, 0.8);
+      padding: 40px 20px;
+      border-radius: 16px;
+      border: 1px solid rgba(0, 242, 254, 0.2);
+      backdrop-filter: blur(10px);
+      width: 90%;
+      max-width: 500px;
+      box-sizing: border-box;
+    }
+
+    #mainpage p {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 3px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    #reference {
+      color: white;
+      font-weight: bold;
+      background: rgba(0, 242, 254, 0.1);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .b {
+      width: 100%;
+      background: transparent;
+      color: white;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 500;
+      padding: 12px;
+      margin-top: 25px;
+      border-radius: 8px;
+      border: 1px solid var(--accent);
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+    }
+
+    .b:hover {
+      background: var(--accent);
+      color: #0a0e17;
+    }
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Mobile Adjustments */
+    @media (max-width: 480px) {
+      .login-div {
+        padding: 30px 20px;
+        gap: 15px;
+      }
+      .page-title {
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+        top: 10px;
+        left: 10px;
+      }
+      #mainpage p {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="loadingDiv" style="
+    display:none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    font-family: Arial, sans-serif;
+
+    ">
+    <div style="
+      width: 50px;
+      height: 50px;
+      border: 5px solid #fff;
+      border-top: 5px solid #004aad;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 15px;
+      "></div>
+    <p style="font-size: 16px; margin: 0;">
+      Loading ...
+    </p>
+
+
+  </div>
+
+  <div class="page-title">
+    ET CBT
+  </div>
+  <div class="login-div" id="login-div">
+    <p id="a">
+      SYSTEM READY
+    </p>
+
+    <input type="text" placeholder="Username" id="name">
+    <input type="email" id="email" placeholder="Email" required>
+    <div class="password-div">
+      <input type="password" placeholder="Password" id="pwd" value=2011 readonly>
+      <button id="show">SHOW</button>
+
+    </div>
+    <button id="login" disabled> Initialize</button>
+
+  </div>
+  <div id="mainpage">
+    <p>
+      ACCESS GRANTED
+    </p>
+    <div style="color: #94a3b8; font-family: 'Roboto'; font-weight:300;">
+      Welcome back, <span id="reference">User</span><br>
+      <span style="font-size:0.8rem; color:#64748b; margin-top:10px; display:block;">Secure terminal activated.</span>
+      <button class='b' id="b">Quiz Selection</button>
+    </div>
+  </div>
+  <script src="quizlogin.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js")
+      .then(() => console.log("Service Worker registered"))
+      .catch(err => console.log("Service Worker error:", err));
+    }
+  </script>
+</body>
+</html>
